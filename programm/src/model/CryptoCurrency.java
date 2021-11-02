@@ -1,18 +1,21 @@
-package market;
+package model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
 public class CryptoCurrency {
 
     private String name;
     private Double price;
-    private Double holding;
-    private Double investedMoney;
+    private Double holding = (double) 0;
+    private Double investedMoney = (double) 0;
+
+    public CryptoCurrency(String name, Double price) {
+        this.name = name;
+        this.price = price;
+    }
 
     protected void changePriceRelatively(Double percent) throws Exception {
         if (percent < -100) {
@@ -21,14 +24,14 @@ public class CryptoCurrency {
         price *= (1 + (percent / 100));
     }
 
-    protected double buy(Double investedMoney) {
+    public double buy(Double investedMoney) {
         Double amount = investedMoney/price;
         this.investedMoney += investedMoney;
         holding += amount;
         return amount;
     }
 
-    protected double sell(Double amount) throws Exception {
+    public double sell(Double amount) throws Exception {
         if (amount > holding) {
             throw new Exception("You have less then you want to sell");
         }
