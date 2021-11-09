@@ -1,7 +1,5 @@
 package businesLogic;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import model.CryptoCurrency;
 import model.Event;
 import model.EventActor;
@@ -27,10 +25,10 @@ public class StaticLoader {
         EventActor elon = new EventActor();
         elon.setName("Elon Musk");
         EventCouple couple = new EventCouple();
-        couple.setDefaultEvent(new Event("hates", -99.2));
-        couple.setInUseEvent(new Event("loves", 308.49));
+        couple.setDefaultEvent(new Event("hates", -1.4, -99.2));
+        couple.setInUseEvent(new Event("loves", 34.1, 308.49));
         elon.getEvents().add(couple);
-        elon.getEvents().add(new Event("invests in", 12.35));
+        elon.getEvents().add(new Event("invests in",0.01, 12.35));
         list.add(elon);
         return list;
     }
