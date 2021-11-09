@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashMap;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -11,17 +13,30 @@ public class EventCouple implements EventInterface {
 
     private Event defaultEvent;
     private Event inUseEvent;
-    private boolean inUse = false;
+    HashMap<CryptoCurrency, Boolean> inUseHashMap = new HashMap<>();
 
-    @Override
+
     public String triggerEvent(CryptoCurrency cryptoCurrency) {
         Event event;
-        if (inUse) {
+        if (isInUse(cryptoCurrency)) {
            event = inUseEvent;
         } else {
             event = defaultEvent;
         }
-        inUse = !inUse;
+        toggleInUse(cryptoCurrency);
         return event.triggerEvent(cryptoCurrency);
     }
+
+
+    private boolean isInUse(CryptoCurrency currency) {
+        inUseHashMap.putIfAbsent(currency, false);
+        return inUseHashMap.get(currency);
+    }
+
+    private void toggleInUse(CryptoCurrency currency) {
+        Boolean boolNow = isInUse(currency);
+        inUseHashMap.remove(currency);
+        inUseHashMap.put(currency, !boolNow);
+    }
+
 }
