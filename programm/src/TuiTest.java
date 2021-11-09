@@ -12,7 +12,7 @@ public class TuiTest {
     private static MarketService marketService = new MarketService();
 
     public static void main(String[] args) throws Exception {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             eventBrain.triggerEvent();
             Double factor = (double) randomInt(1, 9) / (double) 10;
             int fakeBool = randomInt(1,2);
