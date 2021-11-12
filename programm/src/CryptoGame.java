@@ -122,6 +122,9 @@ public class CryptoGame {
             sell(currency);
             return;
         }
+        if (amountToSell < 0) {
+            JOptionPane.showMessageDialog(null, "Your input has to be positive");
+        }
         try {
             marketService.sell(currency, amountToSell);
         } catch (Exception e) {
@@ -142,6 +145,9 @@ public class CryptoGame {
             JOptionPane.showMessageDialog(null, "Input has to be a number");
             buy(currency);
             return;
+        }
+        if (cashToBuy < 0) {
+            JOptionPane.showMessageDialog(null, "Your input has to be positive");
         }
         try {
             marketService.buy(currency, cashToBuy);
