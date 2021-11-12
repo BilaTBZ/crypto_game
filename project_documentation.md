@@ -14,7 +14,7 @@ wie es halt so üblich ist in einem kapitalistischen System.**
 
 ## Klassen Diagramm:
 
-![Klassen Diagramm!](./klassen_diagramm.png "Klassen Diagramm")
+![Altes Klassen Diagramm!](./old_klassen_diagramm.png "Altes Klassen Diagramm")
 
 Der Aufbau sieht zwar auf den ersten Blick relativ kompliziert aus aber das ist er eigentlich nicht.
 Wir haben die CryptoCurrency also die Währung mit dem Namen dem Kurs und der anzahl die man besitzt.
@@ -28,6 +28,9 @@ Das EventInterface dient als eine Art Klasse, die wir in den anderen Klassen imp
 um die TriggerEvent funktion mehrmals brauchen zu können.
 Im Event ist dann die genau Nachricht definiert und der Einfluss auf den Coin.
 Und die EventCouple Klass als Letztes verbindet das Event mit der bestimmten Coin.
+
+![Neues Klassen Diagramm!](./new_klassen_diagramm.png "Neues Klassen Diagramm")
+
 
 ## OO-Konzepte
 
