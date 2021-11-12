@@ -12,7 +12,7 @@ wenn man nur genug glück hat.
 wie es halt so üblich ist in einem kapitalistischen System.**
 
 
-##Klassen Diagramm:
+## Klassen Diagramm:
 
 ![Altes Klassen Diagramm!](./old_klassen_diagramm.png "Altes Klassen Diagramm")
 
@@ -26,12 +26,58 @@ Also die Währung die genauen Events usw. sind dort definiert.
 Der EventActor ist dann die Person/Organisation welche "verantwortlich" ist für das Event.
 Das EventInterface dient als eine Art Klasse, die wir in den anderen Klassen implementieren,
 um die TriggerEvent funktion mehrmals brauchen zu können.
-Im Event ist dann die genau Nachricht definiert und die Influenz der Coin.
+Im Event ist dann die genau Nachricht definiert und der Einfluss auf den Coin.
 Und die EventCouple Klass als Letztes verbindet das Event mit der bestimmten Coin.
 
 ![Neues Klassen Diagramm!](./new_klassen_diagramm.png "Neues Klassen Diagramm")
 
 
+## OO-Konzepte
+
+Wir haben in diesem Projekt uns einmal quer durch alle möglichen OO Konzepte programmiert. Einige davon führen wir hier kurz auf.
+
+### Encapsluation
+
+Da wir mit der Libary Lombok gearbeitet haben, sieht encapsluation bei uns etwas anders aus. Ein gutes Beispiel ist aber die Klasse <code> CryptoCurrency </code>. Anstatt mit <code>@Data</code> für alle Attribute Getters und Setters zu generieren haben wir mit <code>@Getter</code> nur Getter definiert und die Currencies so vor äusseren einfüssen geschützt.
+
+### Delegation
+
+Delegation ist in diesem Projekt sehr stark verbreitet. Im <code>EventBrain</code> kann ein Event getriggert werden welches dann über <code>EventActor</code> (und allenfalls noch über <code>EventCouple</code>) an das <code>Event</code> weitergegeben wird. Die Generierete Message macht dann diesen Weg zurück.
+Hier der Code dazu
+
+    //EventBrain
+    public void triggerEvent() {
+        int currencyIndex = randomInt(0, currencies.size()-1);
+        CryptoCurrency cryptoCurrency =  currencies.get(currencyIndex);
+        int eventActorsIndex = randomInt(0, eventActors.size()-1);
+        EventActor event = eventActors.get(eventActorsIndex);
+        latestMessage = event.triggerEvent(cryptoCurrency); // <------- delegation here 
+    }
+
+    //EventActor
+    public String triggerEvent(CryptoCurrency cryptoCurrency) {
+        int index = randomInt(0, events.size()-1);
+        EventInterface event = events.get(index);
+        String message = event.triggerEvent(cryptoCurrency);  // <------- delegation here 
+        return name + " " + message;
+    }
+
+    //EventCouple
+        public String triggerEvent(CryptoCurrency cryptoCurrency) {
+        Event event;
+        //some code..
+        return event.triggerEvent(cryptoCurrency);
+    }
+
+    //Event
+    public String triggerEvent(CryptoCurrency cryptoCurrency){
+        //some code
+        return message + " " + cryptoCurrency.getName() + ". " + sign + df.format(currencyInfluence) + "%";
+    }
+
+### static
+
+Static haben wir verwendet, um all unsere Events und Coins zu definieren. Den ganzen entsprechenden Code befindet sich in der Klasse <code>StaticLoader</code>.
 
 ## Selbstreflexion
 
