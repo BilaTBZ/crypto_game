@@ -31,6 +31,11 @@ Und die EventCouple Klass als Letztes verbindet das Event mit der bestimmten Coi
 
 ![Neues Klassen Diagramm!](./new_klassen_diagramm.png "Neues Klassen Diagramm")
 
+(Getter und Setter Methoden wurden weggelassen)
+
+Einge dinge sind dann schlussentlich etwas anders implementiert worden. Die Klasse UserInterface heisst jetzt CryptoGame. Es sind einige Methoden dazugekommen um das GUI zu laden und die Interaktion zu ermöglichen.
+Bei CryptoCurrency wurde das Attribut lastPrice hinzugefügt um die Farben im GUI zu ermöglichen.
+Ansonsten gibt es noch einige private Helfer-Methoden und einige Namings haben sich geändert. Das Grundkonzept hat sich aber gehalten.
 
 ## OO-Konzepte
 
