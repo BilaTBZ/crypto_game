@@ -12,8 +12,10 @@ public class StaticLoader {
 
     private static List<CryptoCurrency> loadCurrencies() {
         List<CryptoCurrency> list = new ArrayList<>();
-        list.add(new CryptoCurrency("BitCoin", (double) 20000));
-        list.add(new CryptoCurrency("DogeCoin", 420.69));
+        list.add(new CryptoCurrency("BTC", (double) 20000));
+        list.add(new CryptoCurrency("DOGE", 420.69));
+        list.add(new CryptoCurrency("ETH", 18769.42));
+        list.add(new CryptoCurrency("ADA", 3245.23));
         return list;
     }
 

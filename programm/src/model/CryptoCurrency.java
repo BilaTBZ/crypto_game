@@ -1,7 +1,5 @@
 package model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 
 @Getter
@@ -10,7 +8,7 @@ public class CryptoCurrency {
     private String name;
     private Double price;
     private Double holding = (double) 0;
-    private Double investedMoney = (double) 0;
+    private Double lastPrice = (double) 0;
 
     public CryptoCurrency(String name, Double price) {
         this.name = name;
@@ -26,7 +24,7 @@ public class CryptoCurrency {
 
     public double buy(Double investedMoney) {
         Double amount = investedMoney/price;
-        this.investedMoney += investedMoney;
+        lastPrice = price;
         holding += amount;
         return amount;
     }
@@ -37,7 +35,6 @@ public class CryptoCurrency {
         }
         holding -= amount;
         Double returningMoney = amount*price;
-        this.investedMoney -= returningMoney;
         return returningMoney;
     }
 
